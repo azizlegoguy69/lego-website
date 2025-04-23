@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Abdul Aziz Lego Website</title>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: darkblue;
+        }
+        form {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            width: 300px;
+            box-shadow: 0 0 10px #ccc;
+        }
+        input, button {
+            margin-top: 10px;
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the best Lego website in the world.</h1>
+    <p>This is where you see how to build things.</p>
+
+    <h2>Request a Custom LEGO Build</h2>
+    <form id="legoRequestForm">
+        <label for="legodea">What LEGO build should I make?</label><br>
+        <input type="text" id="legodea" name="legodea" required><br><br>
+
+        <label for="email">Your Email (to notify you when it's ready)</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <button type="submit">Submit Request</button>
+    </form>
+
+    <script>
+        document.getElementById("legoRequestForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let requestText = document.getElementById("legodea").value;
+            let userEmail = document.getElementById("email").value;
+
+            fetch("http://127.0.0.1:5000/send-email", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    request: requestText,
+                    email: userEmail
+                })
+            })
+            .then(response => response.json())
+            .then(data => alert("Request submitted! You'll get an email when it's ready."))
+            .catch(error => console.error("Error:", error));
+        });
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Abdul Aziz Lego Website</title>
+</head>
+<body>
+    <h1>Welcome to the best Lego website in the world.</h1>
+    <p>This is where you see how to build things.</p>
+
+    <h2>Request a Custom LEGO Build</h2>
+
+    <!-- Embed the Google Form -->
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeycXUhSDLyrN1lmy_fn0oM5GUjQCFDYz_zNP5ExOFR4u4J8g/viewform?usp=header" width="640" height="800" frameborder="0">Loading…</iframe>
+
+</body>
+</html>
+<p>Thank you for submitting your LEGO build request! We'll notify you once it's ready!</p>
+
+  
+  
+  
+
+  
+
+
+
+
+
+
+
+
